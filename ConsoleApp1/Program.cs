@@ -8,68 +8,134 @@ namespace ConsoleApp1
 {
     class Program
     {
+        
         static void Main()
         {
-            start:
-            arithmeticclass obj = new arithmeticclass();
-            Console.Write("Please Provide 1st Number : ");
+            Calculation cal = new Calculation();
+
+        first_num:
             try
             {
-                obj.a = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter First Number: ");
+                cal.num1 = Convert.ToInt32(Console.ReadLine());
+
             }
-            catch (Exception exp)
+            catch (Exception ex)
             {
-                //This have to work completly.
-                Console.WriteLine(exp.Message.ToString());
-                goto start;
+                Console.WriteLine(ex.Message);
+                goto first_num;
             }
-            Console.Write("Please Provide 2nd Number : ");
-            obj.b = Convert.ToInt32(Console.ReadLine());
-            Console.Write("1 : For ADD\n2 : For Subtract\n3 : FOr Divide\n4 : For multiply\nPlease Provide OPtion to proceed : ");
-            String inputs = Console.ReadLine();
-            if (inputs == "1")
+        second_num:
+            try
             {
-                Console.WriteLine("Your Ans Is : " + obj.GetSum());
+                Console.Write("Enter Second Number: ");
+                cal.num2 = Convert.ToInt32(Console.ReadLine());
+
             }
-            else if (inputs == "2")
+            catch (Exception ex)
             {
-                Console.WriteLine("Your Ans Is : " + obj.GetSubtract());
+                Console.WriteLine(ex.Message);
+                goto second_num;
             }
-            else if (inputs == "3")
+
+            Console.WriteLine("\n \n !----   Calculation Menu   ----! \n\n 1- Addition \n 2-Subtraction \n 3-Multiplication \n 4- Division \n\n Enter Your Choice...! ");
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
             {
-                Console.WriteLine("Your Ans Is : " + obj.GetDivide());
+                Console.WriteLine("Sum of Input numbers = " + cal.sum());
+                Console.WriteLine(" \n Enter 1 for again Calculation or press any key to exit.");
+                string choice_second = Console.ReadLine();
+                if (choice_second == "1")
+                {
+                    goto first_num;
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
             }
-            else if (inputs == "4")
+            else if (choice == "2")
             {
-                Console.WriteLine("Your Ans Is : " + obj.GetMultilply());
+                Console.WriteLine("Subtraction of Input numbers = " + cal.subtract());
+                Console.WriteLine(" \n Enter 1 for again Calculation or press any key to exit.");
+                string choice_second = Console.ReadLine();
+                if (choice_second == "1")
+                {
+                    goto first_num;
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+            else if (choice == "3")
+            {
+                Console.WriteLine("Multiplication of Input numbers = " + cal.product());
+                Console.WriteLine(" \n Enter 1 for again Calculation or press any key to exit.");
+                string choice_second = Console.ReadLine();
+                if (choice_second == "1")
+                {
+                    goto first_num;
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+            else if (choice == "4")
+            {
+                Console.WriteLine("Division of Input numbers = " + cal.divide());
+                Console.WriteLine(" \n Enter 1 for again Calculation or press any key to exit.");
+                string choice_second = Console.ReadLine();
+                if (choice_second == "1")
+                {
+                    goto first_num;
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
             }
             else
             {
-                Console.Write("You Eneterd invalid OPtion. Press ANy Key to close");
+                Console.WriteLine("You have enter the Invalid Choice...! \n Enter 1 for again Calculation or press any key to exit.");
+                string choice_second = Console.ReadLine();
+                if (choice_second == "1")
+                {
+                    goto first_num;
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
             }
+
             Console.ReadLine();
         }
     }
 
-    public class arithmeticclass
+    public class Calculation
     {
-        public int a, b;
+        public double num1, num2;
 
-        public int GetSum()
+        public double sum()
         {
-            return a + b;
+            return num1 + num2;
         }
-        public int GetSubtract()
+        public double subtract()
         {
-            return a - b;
+            return num1 - num2;
         }
-        public int GetDivide()
+        public double product()
         {
-            return a / b;
+            return num1 * num2;
         }
-        public int GetMultilply()
+        public double divide()
         {
-            return a * b;
+            return num1 / num2;
         }
+
+
     }
 }
